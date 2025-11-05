@@ -48,7 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cartItem = document.createElement('div')
                 cartItem.innerHTML = `
                 ${item.name} - $${item.price.toFixed(2)}
+                <button id="btn-remove">Remove</button>
                 `
+                cartItem.querySelector('button').addEventListener('click', () => {
+                    cart.splice(index, 1)
+                    renderCart(cart)
+                    console.log(cart)
+                })
                 cartItems.appendChild(cartItem)
                 totalPriceDisplay.textContent = `${totalPrice}`
 

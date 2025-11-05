@@ -81,3 +81,17 @@ h2 {
 .hidden {
   display: none;
 }
+#btn-remove {
+  background-color: #ff0000e0;
+  border: none;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#btn-remove:hover {
+  background-color: #ff000080;
+}
