@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
         {id: 3, name: "Product 3", price: 56.99}
     ];
 
-    const cart = []
+    const cart = JSON.parse(localStorage.getItem('cart'))||[]
+    
+    
     const productList = document.getElementById("product-list")
     const cartItems = document.getElementById("cart-items")
     const emptyCart = document.getElementById("empty-cart")
@@ -34,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function addToCart(product) {
         cart.push(product);
         renderCart(cart)
+        saveCart()
+
     }
 
     function renderCart(){
@@ -53,14 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 cartItem.querySelector('button').addEventListener('click', () => {
                     cart.splice(index, 1)
                     renderCart(cart)
-                    console.log(cart)
+                    saveCart()
                 })
                 cartItems.appendChild(cartItem)
-                totalPriceDisplay.textContent = `${totalPrice}`
+                totalPriceDisplay.textContent = `$${totalPrice.toFixed(2)}`
 
             })
         }else {
             emptyCart.classList.remove('hidden');
+            
             totalPriceDisplay.textContent = `$0.00`
             
         }
@@ -70,5 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
         cart.length = 0
         alert("Checkout sicessfully");
         renderCart()
+        saveCart()
     })
+    function saveCart () {
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }
+    renderCart()
 })
